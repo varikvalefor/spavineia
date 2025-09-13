@@ -68,6 +68,15 @@ O< p t j es = PKED.enc p t j es
    → Maybe (PKED.ES₁ p)
 <O = PKED.dec?
 
+<O∘O< : ∀ {lTg lTs j}
+      → (p : PKED {lTg} {lTs} {j})
+      → (tg : PKED.Tg p)
+      → (ts : PKED.Ts p)
+      → (j : PKED.J p)
+      → (es₁ : PKED.ES₁ p)
+      → just es₁ ≡ <O p ts j (O< p tg j es₁)
+<O∘O< = {!!}
+
 record PKSig : Set {!!}
   where
 
