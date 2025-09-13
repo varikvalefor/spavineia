@@ -27,12 +27,13 @@ record PKED {lTg} {lTs} {j} : Set (Level.suc (lTg ⊔ lTs ⊔ j))
     Ts : Set lTs
     J : Set j
     traji₁ : Maybe ℕ
+    traji₂ : Maybe ℕ
 
   ES₁ : Set
   ES₁ = maybe Fin ℕ traji₁
 
   ES₂ : Set
-  ES₂ = {!!}
+  ES₂ = maybe Fin ℕ traji₂
 
   field
     enc : Tg → J → ES₁ → ES₂
