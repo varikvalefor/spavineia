@@ -74,6 +74,7 @@ O< = PKED.enc
       → (ts : PKED.Ts p)
       → (j : PKED.J p)
       → (es₁ : PKED.ES₁ p)
+      → PKED.M p tg ts
       → just es₁ ≡ <O p ts j (O< p tg j es₁)
 <O∘O< = {!!}
 
