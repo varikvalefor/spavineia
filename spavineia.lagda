@@ -19,6 +19,10 @@ open import Data.Maybe
     maybe;
     just
   )
+open import Relation.Binary.PropositionalEquality
+  using (
+    _≡_
+  )
 
 record PKED {lTg} {lTs} {j} : Set (Level.suc (lTg ⊔ lTs ⊔ j))
   where
@@ -39,6 +43,14 @@ record PKED {lTg} {lTs} {j} : Set (Level.suc (lTg ⊔ lTs ⊔ j))
     M : Tg → Ts → Set
     enc : Tg → J → ES₁ → ES₂
     dec? : Ts → J → ES₂ → Maybe ES₁
+
+  field
+    enc∘dec : (tg : Tg)
+            → (ts : Ts)
+            → (j : J)
+            → (es : ES₁)
+            → M tg ts
+            → just es ≡ dec? ts j (enc tg j es)
 
 O< : ∀ {lTg lTs j}
    → (p : PKED {lTg} {lTs} {j})
