@@ -45,7 +45,7 @@ record PKED {lTg} {lTs} {j} : Set (Level.suc (lTg ⊔ lTs ⊔ j))
     dec? : Ts → J → ES₂ → Maybe ES₁
 
   field
-    enc∘dec : (tg : Tg)
+    dec∘enc : (tg : Tg)
             → (ts : Ts)
             → (j : J)
             → (es : ES₁)
