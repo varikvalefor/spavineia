@@ -37,6 +37,7 @@ record PKED {lTg} {lTs} {j} : Set (Level.suc (lTg ⊔ lTs ⊔ j))
 
   field
     enc : Tg → J → ES₁ → ES₂
+    dec : Ts → J → ES₂ → ES₁
 
 O< : ∀ {lTg lTs j}
    → (p : PKED {lTg} {lTs} {j})
