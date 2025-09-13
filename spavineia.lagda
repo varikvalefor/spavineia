@@ -24,7 +24,7 @@ open import Relation.Binary.PropositionalEquality
     _≡_
   )
 
-record PKED {lTg} {lTs} {j} : Set (Level.suc (lTg ⊔ lTs ⊔ j))
+record PKED (lTg : _) (lTs : _) (j : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j))
   where
   field
     Tg : Set lTg
@@ -53,7 +53,7 @@ record PKED {lTg} {lTs} {j} : Set (Level.suc (lTg ⊔ lTs ⊔ j))
             → just es ≡ dec? ts j (enc tg j es)
 
 O< : ∀ {lTg lTs j}
-   → (p : PKED {lTg} {lTs} {j})
+   → (p : PKED lTg lTs j)
    → PKED.Tg p
    → PKED.J p
    → PKED.ES₁ p
@@ -61,7 +61,7 @@ O< : ∀ {lTg lTs j}
 O< = PKED.enc
 
 <O : ∀ {lTg lTs j}
-   → (p : PKED {lTg} {lTs} {j})
+   → (p : PKED lTg lTs j)
    → PKED.Ts p
    → PKED.J p
    → PKED.ES₂ p
@@ -69,7 +69,7 @@ O< = PKED.enc
 <O = PKED.dec?
 
 <O∘O< : ∀ {lTg lTs j}
-      → (p : PKED {lTg} {lTs} {j})
+      → (p : PKED lTg lTs j)
       → (tg : PKED.Tg p)
       → (ts : PKED.Ts p)
       → (j : PKED.J p)
