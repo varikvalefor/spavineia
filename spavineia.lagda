@@ -43,7 +43,7 @@ O< : ∀ {lTg lTs j}
    → PKED.J p
    → PKED.ES₁ p
    → PKED.ES₂ p
-O< = {!!}
+O< = λ p t j es → PKED.enc p t j es
 
 <O : ∀ {lTg lTs j}
    → (p : PKED {lTg} {lTs} {j})
