@@ -45,6 +45,14 @@ O< : ∀ {lTg lTs j}
    → PKED.ES₂ p
 O< = {!!}
 
+<O : ∀ {lTg lTs j}
+   → (p : PKED {lTg} {lTs} {j})
+   → PKED.Ts p
+   → PKED.J p
+   → PKED.ES₁ p
+   → Maybe (PKED.ES₂ p)
+<O = {!!}
+
 record PKSig : Set {!!}
   where
 
