@@ -76,7 +76,7 @@ O< = PKED.enc
       → (es₁ : PKED.ES₁ p)
       → PKED.M p tg ts
       → just es₁ ≡ <O p ts j (O< p tg j es₁)
-<O∘O< = {!!}
+<O∘O< = PKED.dec∘enc
 
 record PKSig : Set {!!}
   where
