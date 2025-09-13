@@ -64,7 +64,7 @@ O< p t j es = PKED.enc p t j es
    → (p : PKED {lTg} {lTs} {j})
    → PKED.Ts p
    → PKED.J p
-   → PKED.ES₁ p
+   → PKED.ES₂ p
    → Maybe (PKED.ES₁ p)
 <O = {!!}
 
