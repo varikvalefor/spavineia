@@ -66,7 +66,7 @@ O< p t j es = PKED.enc p t j es
    → PKED.J p
    → PKED.ES₂ p
    → Maybe (PKED.ES₁ p)
-<O = {!!}
+<O = PKED.dec?
 
 record PKSig : Set {!!}
   where
