@@ -36,6 +36,7 @@ record PKED {lTg} {lTs} {j} : Set (Level.suc (lTg ⊔ lTs ⊔ j))
   ES₂ = maybe Fin ℕ traji₂
 
   field
+    M : Tg → Ts → Set
     enc : Tg → J → ES₁ → ES₂
     dec : Ts → J → ES₂ → ES₁
 
