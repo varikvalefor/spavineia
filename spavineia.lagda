@@ -24,7 +24,7 @@ open import Relation.Binary.PropositionalEquality
     _≡_
   )
 
-record PKED (lTg : _) (lTs : _) (j : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j))
+record PKED (lTg lTs j : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j))
   where
   field
     Tg : Set lTg
