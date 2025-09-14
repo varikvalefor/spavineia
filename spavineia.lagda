@@ -12,6 +12,10 @@ open import Data.Nat
   using (
     ℕ
   )
+open import Data.List
+  using (
+    List
+  )
 open import Data.Maybe
   using (
     nothing;
@@ -81,6 +85,8 @@ O< = PKED.enc
 record PKSig : Set {!!}
   where
 
-Cryptosystem : Set
-Cryptosystem = {!!}
+record Av (lTg lTs j : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j))
+  where
+  field
+    pked : List (PKED lTg lTs j)
 \end{code}
