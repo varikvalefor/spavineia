@@ -23,6 +23,10 @@ open import Data.Maybe
     maybe;
     just
   )
+open import Data.String
+  using (
+    String
+  )
 open import Relation.Binary.PropositionalEquality
   using (
     _≡_
@@ -31,6 +35,7 @@ open import Relation.Binary.PropositionalEquality
 record PKED (lTg lTs j : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j))
   where
   field
+    cmene : String
     Tg : Set lTg
     Ts : Set lTs
     J : Set j
