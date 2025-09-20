@@ -27,6 +27,10 @@ open import Data.String
   using (
     String
   )
+open import Data.Product
+  using (
+    Σ
+  )
 open import Relation.Nullary
   using (
     Dec
@@ -91,19 +95,22 @@ O< = PKED.enc
       → just es₁ ≡ <O p ts j (O< p tg j es₁)
 <O∘O< = PKED.dec∘enc
 
-record ArkasaF (ES₁l ES₂l : _) : Set (Level.suc (ES₁l ⊔ ES₂l))
+record ArkasaF (M₁l M₂l : _) : Set (Level.suc (M₁l ⊔ M₂l))
   where
   field
     cmene : String
-    ES₁ : Set ES₁l
-    ES₂ : (x : ES₁) → Set ES₂l
-    arkasa : (x : ES₁) → ES₂ x
+    M₁ : ℕ → Set M₁l
+    M₂ : ℕ → Set M₂l
+  ES₁ = Σ ℕ M₁
+  ES₂ = Σ ℕ M₂
+  field
+    arkasa : ES₁ → ES₂
 
-record PKSig (lTg lTs j ES₁l ES₂l : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j ⊔ ES₁l ⊔ ES₂l))
+record PKSig (lTg lTs j M₁l M₂l : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j ⊔ M₁l ⊔ M₂l))
   where
   field
     pked : PKED lTg lTs j
-    arkasaf : ArkasaF ES₁l ES₂l
+    arkasaf : ArkasaF M₁l M₂l
 
 record Av (lTg lTs j : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j))
   where
