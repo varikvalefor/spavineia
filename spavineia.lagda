@@ -27,6 +27,10 @@ open import Data.String
   using (
     String
   )
+open import Relation.Nullary
+  using (
+    Dec
+  )
 open import Relation.Binary.PropositionalEquality
   using (
     _≡_
@@ -86,6 +90,14 @@ O< = PKED.enc
       → PKED.M p tg ts
       → just es₁ ≡ <O p ts j (O< p tg j es₁)
 <O∘O< = PKED.dec∘enc
+
+record ArkasaF (ES₁l ES₂l : _) : Set (Level.suc (ES₁l ⊔ ES₂l))
+  where
+  field
+    cmene : String
+    ES₁ : Set ES₁l
+    ES₂ : (x : ES₁) → Set ES₂l
+    arkasa : (x : ES₁) → ES₂ x
 
 record PKSig : Set {!!}
   where
