@@ -99,8 +99,11 @@ record ArkasaF (ES₁l ES₂l : _) : Set (Level.suc (ES₁l ⊔ ES₂l))
     ES₂ : (x : ES₁) → Set ES₂l
     arkasa : (x : ES₁) → ES₂ x
 
-record PKSig : Set {!!}
+record PKSig (lTg lTs j ES₁l ES₂l : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j ⊔ ES₁l ⊔ ES₂l))
   where
+  field
+    pked : PKED lTg lTs j
+    arkasaf : ArkasaF ES₁l ES₂l
 
 record Av (lTg lTs j : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j))
   where
