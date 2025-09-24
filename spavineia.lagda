@@ -160,7 +160,7 @@ instance
     cmene = "RSA-" ++ show n;
     Ts = RSA.T.S;
     Tg = RSA.T.G;
-    traji₁ = just {!!};
+    traji₁ = just traji₁;
     traji₂ = just {!!};
     J = Fin 1;
     M = λ x z → RSA.T.M z x;
@@ -169,6 +169,10 @@ instance
     dec∘enc = {!!};
     ESd = {!!}
     }
+    where
+    traji₁ : RSA.T.G ⊎ RSA.T.S → Fin 1 → ℕ
+    traji₁ (_⊎_.inj₁ g) _ = RSA.T.G.n g
+    traji₁ (_⊎_.inj₂ s) _ = RSA.T.S.n s
 
 record ArkasaF (M₁l M₂l : _) : Set (Level.suc (M₁l ⊔ M₂l))
   where
