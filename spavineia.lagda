@@ -136,7 +136,7 @@ module RSA where
                   {≢0 = ≢0}))
 
     M : S → G → Set
-    M = {!!}
+    M = λ s g → (G.n g ≡ S.n s) Data.Product.× (G.e g ≡ S.e s)
 
 instance
   rsaN : (n : ℕ) → PKED _ _ _
