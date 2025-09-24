@@ -122,12 +122,13 @@ module RSA where
       eulerTotient = {!!}
       field
         1<e<λ : (1 ℕ.< e) Data.Product.× (e ℕ.< eulerTotient n)
+        ≢0 : _
         mmi : (_≡_
                 1
                 (Data.Nat.DivMod._%_
                   (d ℕ.* e)
                   (eulerTotient n)
-                  {≢0 = {!!}}))
+                  {≢0 = ≢0}))
 
 instance
   rsaN : (n : ℕ) → PKED _ _ _
