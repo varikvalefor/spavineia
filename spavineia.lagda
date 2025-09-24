@@ -135,7 +135,7 @@ instance
   rsaN n = record {
     cmene = "RSA-" ++ show n;
     Ts = RSA.T.S;
-    Tg = {!!};
+    Tg = ℕ Data.Product.× ℕ;
     traji₁ = just {!!};
     traji₂ = just {!!};
     J = Fin 1;
