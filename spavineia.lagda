@@ -45,6 +45,10 @@ open import Relation.Nullary
   using (
     Dec
   )
+open import Data.Nat.Coprimality
+  using (
+    coprime?
+  )
 open import Truthbrary.Record.SR
   using (
     show;
@@ -140,7 +144,7 @@ module RSA where
         d : ℕ
       n = p ℕ.* q
       eulerTotient : ℕ → ℕ
-      eulerTotient = {!!}
+      eulerTotient = λ n → Data.List.length (Data.List.filter (coprime? n) (Data.List.upTo n))
       field
         1<e<λ : (1 ℕ.< e) Σ.× (e ℕ.< eulerTotient n)
         ≢0 : _
