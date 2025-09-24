@@ -74,7 +74,7 @@ record PKED (lTg lTs j : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j))
     traji₂ : Maybe ℕ
 
   ES₁ : Tg ⊎ Ts → J → Set
-  ES₁ g j = maybe Fin ℕ (Data.Maybe.map (λ f → f g j) traji₁)
+  ES₁ g j = maybe (λ f → Fin (f g j)) ℕ traji₁
 
   ES₂ : Set
   ES₂ = maybe Fin ℕ traji₂
