@@ -109,11 +109,31 @@ O< = PKED.enc
       → just es₁ ≡ <O p ts j (O< p tg j es₁)
 <O∘O< = PKED.dec∘enc
 
+module RSA where
+  module T where
+    record S : Set
+      where
+      field
+        p q : ℕ
+        e : ℕ
+        d : ℕ
+      n = p ℕ.* q
+      eulerTotient : ℕ → ℕ
+      eulerTotient = {!!}
+      field
+        1<e<λ : (1 ℕ.< e) Data.Product.× (e ℕ.< eulerTotient n)
+        mmi : (_≡_
+                1
+                (Data.Nat.DivMod._%_
+                  (d ℕ.* e)
+                  (eulerTotient n)
+                  {≢0 = {!!}}))
+
 instance
   rsaN : (n : ℕ) → PKED _ _ _
   rsaN n = record {
     cmene = "RSA-" ++ show n;
-    Ts = {!!};
+    Ts = RSA.T.S;
     Tg = {!!};
     traji₁ = just {!!};
     traji₂ = just {!!};
