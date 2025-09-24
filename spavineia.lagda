@@ -9,6 +9,7 @@ open import Data.Fin
     Fin
   )
 open import Data.Nat
+  as ℕ
   using (
     ℕ
   )
@@ -144,7 +145,7 @@ sha256 : ArkasaF _ _
 sha256 = record {
   cmene = "SHA-256";
   M₁ = λ x → ℕ;
-  M₂ = Data.Nat._< (2 Data.Nat.^ 256);
+  M₂ = ℕ._< (2 ℕ.^ 256);
   arkasa = {!!}
   }
 
