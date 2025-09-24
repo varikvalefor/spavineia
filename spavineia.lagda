@@ -29,6 +29,7 @@ open import Data.String
     String
   )
 open import Data.Product
+  as Σ
   using (
     Σ
   )
@@ -126,7 +127,7 @@ module RSA where
       eulerTotient : ℕ → ℕ
       eulerTotient = {!!}
       field
-        1<e<λ : (1 ℕ.< e) Data.Product.× (e ℕ.< eulerTotient n)
+        1<e<λ : (1 ℕ.< e) Σ.× (e ℕ.< eulerTotient n)
         ≢0 : _
         mmi : (_≡_
                 1
@@ -136,7 +137,7 @@ module RSA where
                   {≢0 = ≢0}))
 
     M : S → G → Set
-    M = λ s g → (G.n g ≡ S.n s) Data.Product.× (G.e g ≡ S.e s)
+    M = λ s g → (G.n g ≡ S.n s) Σ.× (G.e g ≡ S.e s)
 
 instance
   rsaN : (n : ℕ) → PKED _ _ _
