@@ -13,6 +13,11 @@ open import Data.Nat
   using (
     ℕ
   )
+open import Data.Sum
+  as _⊎_
+  using (
+    _⊎_
+  )
 open import Data.List
   using (
     List
@@ -55,6 +60,9 @@ open import Relation.Binary.PropositionalEquality
     _≡_
   )
 
+coerce : ∀ {a} → {A B : Set a} → A ≡ B → A → B
+coerce _≡_.refl x = x
+
 record PKED (lTg lTs j : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j))
   where
   field
@@ -62,42 +70,48 @@ record PKED (lTg lTs j : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j))
     Tg : Set lTg
     Ts : Set lTs
     J : Set j
-    traji₁ : Maybe ℕ
+    traji₁ : Maybe (Tg ⊎ Ts → J → ℕ)
     traji₂ : Maybe ℕ
 
-  ES₁ : Set
-  ES₁ = maybe Fin ℕ traji₁
+  ES₁ : Tg ⊎ Ts → J → Set
+  ES₁ g j = maybe Fin ℕ (Data.Maybe.map (λ f → f g j) traji₁)
 
   ES₂ : Set
   ES₂ = maybe Fin ℕ traji₂
 
   field
     M : Tg → Ts → Set
-    enc : Tg → J → ES₁ → ES₂
-    dec? : Ts → J → ES₂ → Maybe ES₁
+    ESd : (g : Tg)
+        → (s : Ts)
+        → M g s
+        → (j : J)
+        → ES₁ (_⊎_.inj₁ g) j ≡ ES₁ (_⊎_.inj₂ s) j
+    enc : (g : Tg) → (j : J) → ES₁ (_⊎_.inj₁ g) j → ES₂
+    dec? : (s : Ts) → (j : J) → ES₂ → Maybe (ES₁ (_⊎_.inj₂ s) j)
 
   field
     dec∘enc : (tg : Tg)
             → (ts : Ts)
             → (j : J)
-            → (es : ES₁)
-            → M tg ts
-            → just es ≡ dec? ts j (enc tg j es)
+            → (es : ES₁ (_⊎_.inj₁ tg) j)
+            → (m : M tg ts)
+            → let es' = coerce (ESd tg ts m j) es in
+              just es' ≡ dec? ts j (enc tg j es)
 
 O< : ∀ {lTg lTs j}
    → (p : PKED lTg lTs j)
-   → PKED.Tg p
-   → PKED.J p
-   → PKED.ES₁ p
+   → (g : PKED.Tg p)
+   → (j : PKED.J p)
+   → PKED.ES₁ p (_⊎_.inj₁ g) j
    → PKED.ES₂ p
 O< = PKED.enc
 
 <O : ∀ {lTg lTs j}
    → (p : PKED lTg lTs j)
-   → PKED.Ts p
-   → PKED.J p
+   → (s : PKED.Ts p)
+   → (j : PKED.J p)
    → PKED.ES₂ p
-   → Maybe (PKED.ES₁ p)
+   → Maybe (PKED.ES₁ p (_⊎_.inj₂ s) j)
 <O = PKED.dec?
 
 <O∘O< : ∀ {lTg lTs j}
@@ -105,9 +119,10 @@ O< = PKED.enc
       → (tg : PKED.Tg p)
       → (ts : PKED.Ts p)
       → (j : PKED.J p)
-      → (es₁ : PKED.ES₁ p)
-      → PKED.M p tg ts
-      → just es₁ ≡ <O p ts j (O< p tg j es₁)
+      → (es₁ : PKED.ES₁ p (_⊎_.inj₁ tg) j)
+      → (m : PKED.M p tg ts)
+      → let es₁' = coerce (PKED.ESd p tg ts m j) es₁ in
+        just es₁' ≡ <O p ts j (O< p tg j es₁)
 <O∘O< = PKED.dec∘enc
 
 module RSA where
@@ -151,7 +166,8 @@ instance
     M = λ x z → RSA.T.M z x;
     enc = {!!};
     dec? = {!!};
-    dec∘enc = {!!}
+    dec∘enc = {!!};
+    ESd = {!!}
     }
 
 record ArkasaF (M₁l M₂l : _) : Set (Level.suc (M₁l ⊔ M₂l))
