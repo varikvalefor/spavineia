@@ -111,6 +111,11 @@ O< = PKED.enc
 
 module RSA where
   module T where
+    record G : Set
+      where
+      field
+        n e : ℕ
+
     record S : Set
       where
       field
@@ -135,7 +140,7 @@ instance
   rsaN n = record {
     cmene = "RSA-" ++ show n;
     Ts = RSA.T.S;
-    Tg = ℕ Data.Product.× ℕ;
+    Tg = RSA.T.G;
     traji₁ = just {!!};
     traji₂ = just {!!};
     J = Fin 1;
