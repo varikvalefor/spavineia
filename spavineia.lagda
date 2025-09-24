@@ -140,6 +140,14 @@ record PKSig (lTg lTs j M₁l M₂l : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j ⊔
     pked : PKED lTg lTs j
     arkasaf : ArkasaF M₁l M₂l
 
+sha256 : ArkasaF _ _
+sha256 = record {
+  cmene = "SHA-256";
+  M₁ = λ x → ℕ;
+  M₂ = Data.Nat._< (2 Data.Nat.^ 256);
+  arkasa = {!!}
+  }
+
 record Av (lTg lTs j : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j))
   where
   field
