@@ -31,9 +31,22 @@ open import Data.Product
   using (
     Σ
   )
+open import Data.Nat.DivMod
+  using (
+  )
 open import Relation.Nullary
   using (
     Dec
+  )
+open import Truthbrary.Record.SR
+  using (
+    show;
+    showNat
+  )
+open import Truthbrary.Record.LLC
+  using (
+    _++_;
+    liliString
   )
 open import Relation.Binary.PropositionalEquality
   using (
@@ -94,6 +107,21 @@ O< = PKED.enc
       → PKED.M p tg ts
       → just es₁ ≡ <O p ts j (O< p tg j es₁)
 <O∘O< = PKED.dec∘enc
+
+instance
+  rsaN : (n : ℕ) → PKED _ _ _
+  rsaN n = record {
+    cmene = "RSA-" ++ show n;
+    Ts = {!!};
+    Tg = {!!};
+    traji₁ = just {!!};
+    traji₂ = just {!!};
+    J = Fin 1;
+    M = {!!};
+    enc = {!!};
+    dec? = {!!};
+    dec∘enc = {!!}
+    }
 
 record ArkasaF (M₁l M₂l : _) : Set (Level.suc (M₁l ⊔ M₂l))
   where
