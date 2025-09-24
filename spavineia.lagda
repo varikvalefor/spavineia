@@ -135,6 +135,9 @@ module RSA where
                   (eulerTotient n)
                   {≢0 = ≢0}))
 
+    M : S → G → Set
+    M = {!!}
+
 instance
   rsaN : (n : ℕ) → PKED _ _ _
   rsaN n = record {
@@ -144,7 +147,7 @@ instance
     traji₁ = just {!!};
     traji₂ = just {!!};
     J = Fin 1;
-    M = {!!};
+    M = λ x z → RSA.T.M z x;
     enc = {!!};
     dec? = {!!};
     dec∘enc = {!!}
