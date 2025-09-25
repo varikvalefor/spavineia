@@ -158,6 +158,7 @@ module RSA where
       where
       field
         n e : ℕ
+        n≢0 : R₀D.False $ n ℕ.≟ 0
 
     record S : Set
       where
