@@ -213,7 +213,11 @@ module RSA where
           → (_≅_
               m
               (<O' s (O<' g m)))
-  <O'∘O<' = {!!}
+  <O'∘O<' = λ g s M m → begin
+    m ≅⟨ {!!} ⟩
+    <O' s (O<' g m) ∎
+    where
+    open _≅_.≅-Reasoning
 \end{code}
 
 \begin{code}
