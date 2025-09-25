@@ -67,10 +67,14 @@ open import Relation.Binary.PropositionalEquality
   using (
     _≡_
   )
+\end{code}
 
+\begin{code}
 coerce : ∀ {a} → {A B : Set a} → A ≡ B → A → B
 coerce _≡_.refl x = x
+\end{code}
 
+\begin{code}
 record PKED (lTg lTs j : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j))
   where
   field
@@ -105,7 +109,9 @@ record PKED (lTg lTs j : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j))
             → (m : M tg ts)
             → let es' = coerce (ESd tg ts m j) es in
               just es' ≡ dec? ts j (enc tg j es)
+\end{code}
 
+\begin{code}
 O< : ∀ {lTg lTs j}
    → (p : PKED lTg lTs j)
    → (g : PKED.Tg p)
@@ -113,7 +119,9 @@ O< : ∀ {lTg lTs j}
    → PKED.ES₁ p (_⊎_.inj₁ g) j
    → PKED.ES₂ p
 O< = PKED.enc
+\end{code}
 
+\begin{code}
 <O : ∀ {lTg lTs j}
    → (p : PKED lTg lTs j)
    → (s : PKED.Ts p)
@@ -121,7 +129,9 @@ O< = PKED.enc
    → PKED.ES₂ p
    → Maybe $ PKED.ES₁ p (_⊎_.inj₂ s) j
 <O = PKED.dec?
+\end{code}
 
+\begin{code}
 <O∘O< : ∀ {lTg lTs j}
       → (p : PKED lTg lTs j)
       → (tg : PKED.Tg p)
@@ -132,7 +142,9 @@ O< = PKED.enc
       → let es₁' = coerce (PKED.ESd p tg ts m j) es₁ in
         just es₁' ≡ <O p ts j (O< p tg j es₁)
 <O∘O< = PKED.dec∘enc
+\end{code}
 
+\begin{code}
 module RSA where
   module T where
     record G : Set
@@ -161,7 +173,9 @@ module RSA where
 
     M : S → G → Set
     M = λ s g → (G.n g ≡ S.n s) Σ.× (G.e g ≡ S.e s)
+\end{code}
 
+\begin{code}
 instance
   rsaN : (n : ℕ) → PKED _ _ _
   rsaN n = record {
@@ -181,7 +195,9 @@ instance
     traji₁ : RSA.T.G ⊎ RSA.T.S → Fin 1 → ℕ
     traji₁ (_⊎_.inj₁ g) _ = RSA.T.G.n g
     traji₁ (_⊎_.inj₂ s) _ = RSA.T.S.n s
+\end{code}
 
+\begin{code}
 record ArkasaF (M₁l M₂l : _) : Set (Level.suc $ M₁l ⊔ M₂l)
   where
   field
@@ -192,13 +208,17 @@ record ArkasaF (M₁l M₂l : _) : Set (Level.suc $ M₁l ⊔ M₂l)
   ES₂ = Σ ℕ M₂
   field
     arkasa : ES₁ → ES₂
+\end{code}
 
+\begin{code}
 record PKSig (lTg lTs j M₁l M₂l : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j ⊔ M₁l ⊔ M₂l))
   where
   field
     pked : PKED lTg lTs j
     arkasaf : ArkasaF M₁l M₂l
+\end{code}
 
+\begin{code}
 sha256 : ArkasaF _ _
 sha256 = record {
   cmene = "SHA-256";
@@ -206,9 +226,12 @@ sha256 = record {
   M₂ = ℕ._< (2 ℕ.^ 256);
   arkasa = {!!}
   }
+\end{code}
 
+\begin{code}
 record Av (lTg lTs j : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j))
   where
   field
     pked : List $ PKED lTg lTs j
+\end{code}
 \end{code}
