@@ -212,7 +212,7 @@ instance
     J = Fin 1;
     M = Function.flip RSA.T.M;
     enc = λ g _ → RSA.O<' g;
-    dec? = λ s _ c → just $ Data.Nat.DivMod._mod_ (c ℕ.^ RSA.T.S.d s) (RSA.T.S.n s) {≢0 = RSA.T.S.n≢0 s};
+    dec? = λ s _ → just Function.∘ RSA.<O' s;
     dec∘enc = {!!};
     ESd = {!!}
     }
