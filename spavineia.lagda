@@ -211,7 +211,7 @@ record ArkasaF (M₁l M₂l : _) : Set (Level.suc $ M₁l ⊔ M₂l)
 \end{code}
 
 \begin{code}
-record PKSig (lTg lTs j M₁l M₂l : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j ⊔ M₁l ⊔ M₂l))
+record PKSig (lTg lTs j M₁l M₂l : _) : Set (Level.suc $ lTg ⊔ lTs ⊔ j ⊔ M₁l ⊔ M₂l)
   where
   field
     pked : PKED lTg lTs j
