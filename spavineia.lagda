@@ -190,7 +190,9 @@ module RSA where
   Se g = Fin (T.G.n g)
 
   O<' : (g : T.G) → Se g → ℕ
-  O<' g m = Data.Nat.DivMod._%_ (Data.Fin.toℕ m ℕ.^ (T.G.e g)) (T.G.n g) {≢0 = T.G.n≢0 g}
+  O<' g m = Data.Nat.DivMod._%_ m^e (T.G.n g) {≢0 = T.G.n≢0 g}
+    where
+    m^e = Data.Fin.toℕ m ℕ.^ (T.G.e g)
 \end{code}
 
 \begin{code}
