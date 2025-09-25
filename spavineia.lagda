@@ -184,7 +184,7 @@ instance
     traji₁ = just traji₁;
     J = Fin 1;
     M = λ x z → RSA.T.M z x;
-    enc = {!!};
+    enc = λ g _ m → Data.Nat.DivMod._%_ (Data.Fin.toℕ m ℕ.^ (RSA.T.G.e g)) (RSA.T.G.n g) {≢0 = {!!}};
     dec? = {!!};
     dec∘enc = {!!};
     ESd = {!!}
