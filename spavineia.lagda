@@ -213,7 +213,6 @@ module RSA where
               m
               (<O' s (O<' g m)))
   <O'∘O<' = {!!}
-              
 \end{code}
 
 \begin{code}
