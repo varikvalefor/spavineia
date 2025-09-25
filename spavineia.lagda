@@ -189,10 +189,16 @@ module RSA where
   Se : T.G → Set
   Se g = Fin (T.G.n g)
 
+  Sd : T.S → Set
+  Sd s = Fin (T.S.n s)
+
   O<' : (g : T.G) → Se g → ℕ
   O<' g m = Data.Nat.DivMod._%_ m^e (T.G.n g) {≢0 = T.G.n≢0 g}
     where
     m^e = Data.Fin.toℕ m ℕ.^ T.G.e g
+
+  <O' : (s : T.S) → ℕ → Sd s
+  <O' s c = Data.Nat.DivMod._mod_ (c ℕ.^ T.S.d s) (T.S.n s) {≢0 = T.S.n≢0 s}
 \end{code}
 
 \begin{code}
