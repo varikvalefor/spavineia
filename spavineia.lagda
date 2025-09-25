@@ -75,6 +75,7 @@ open import Relation.Nullary.Decidable
     using (
     )
 open import Relation.Binary.PropositionalEquality
+  as _≡_
   using (
     _≡_
   )
@@ -240,7 +241,7 @@ instance
     enc = λ g _ → RSA.O<' g;
     dec? = λ s _ → just ∘ RSA.<O' s;
     dec∘enc = {!!};
-    ESd = λ g s (ns Σ., _) _ → Relation.Binary.PropositionalEquality.cong Fin ns
+    ESd = λ g s (ns Σ., _) _ → _≡_.cong Fin ns
     }
     where
     traji₁ : RSA.T.G ⊎ RSA.T.S → Fin 1 → ℕ
