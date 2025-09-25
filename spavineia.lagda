@@ -215,9 +215,13 @@ module RSA where
               (<O' s (O<' g m)))
   <O'∘O<' g s M m = _≅_.sym $ begin
     <O' s (O<' g m) ≅⟨ {!!} ⟩
+    Data.Nat.DivMod._mod_ ((m' ℕ.^ e) ℕ.^ d) n₂ {≢0 = {!!}} ≅⟨ {!!} ⟩
     m ∎
     where
     m' = Data.Fin.toℕ m
+    e = T.G.e g
+    d = T.S.d s
+    n₂ = T.S.n s
     open _≅_.≅-Reasoning
 \end{code}
 
