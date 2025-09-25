@@ -147,13 +147,13 @@ module RSA where
       eulerTotient = λ n → Data.List.length (Data.List.filter (coprime? n) (Data.List.upTo n))
       field
         1<e<λ : (1 ℕ.< e) Σ.× (e ℕ.< eulerTotient n)
-        ≢0 : _
+        λ' : ℕ
+        λ'≡ : ℕ.suc λ' ≡ eulerTotient n
         mmi : (_≡_
                 1
                 (Data.Nat.DivMod._%_
                   (d ℕ.* e)
-                  (eulerTotient n)
-                  {≢0 = ≢0}))
+                  (ℕ.suc λ')))
 
     M : S → G → Set
     M = λ s g → (G.n g ≡ S.n s) Σ.× (G.e g ≡ S.e s)
