@@ -45,6 +45,7 @@ open import Data.Product
   )
 open import Data.Nat.DivMod
   using (
+    _%_
   )
 open import Relation.Nullary
   using (
@@ -56,7 +57,8 @@ open import Data.Nat.Primality
   )
 open import Data.Nat.Coprimality
   using (
-    coprime?
+    coprime?;
+    Coprime
   )
 open import Truthbrary.Record.SR
   using (
@@ -185,7 +187,7 @@ module RSA where
         λ'≡ : ℕ.suc λ' ≡ eulerTotient n
         mmi : (_≡_
                 1
-                (Data.Nat.DivMod._%_
+                (_%_
                   (d ℕ.* e)
                   (ℕ.suc λ')))
 
@@ -199,7 +201,7 @@ module RSA where
   Sd s = Fin (T.S.n s)
 
   O<' : (g : T.G) → Se g → ℕ
-  O<' g m = Data.Nat.DivMod._%_ m^e (T.G.n g) {≢0 = T.G.n≢0 g}
+  O<' g m = _%_ m^e (T.G.n g) {≢0 = T.G.n≢0 g}
     where
     m^e = Data.Fin.toℕ m ℕ.^ T.G.e g
 
