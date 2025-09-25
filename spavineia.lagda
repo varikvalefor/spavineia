@@ -18,6 +18,10 @@ open import Data.Sum
   using (
     _⊎_
   )
+open import Function
+  using (
+    _$_
+  )
 open import Data.List
   using (
     List
@@ -78,7 +82,7 @@ record PKED (lTg lTs j : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j))
     traji₂ : Maybe ℕ
 
   ES₁ : Tg ⊎ Ts → J → Set
-  ES₁ g j = maybe (λ f → Fin (f g j)) ℕ traji₁
+  ES₁ g j = maybe (λ f → Fin $ f g j) ℕ traji₁
 
   ES₂ : Set
   ES₂ = maybe Fin ℕ traji₂
@@ -115,7 +119,7 @@ O< = PKED.enc
    → (s : PKED.Ts p)
    → (j : PKED.J p)
    → PKED.ES₂ p
-   → Maybe (PKED.ES₁ p (_⊎_.inj₂ s) j)
+   → Maybe $ PKED.ES₁ p (_⊎_.inj₂ s) j
 <O = PKED.dec?
 
 <O∘O< : ∀ {lTg lTs j}
@@ -144,7 +148,7 @@ module RSA where
         d : ℕ
       n = p ℕ.* q
       eulerTotient : ℕ → ℕ
-      eulerTotient = λ n → Data.List.length (Data.List.filter (coprime? n) (Data.List.upTo n))
+      eulerTotient = λ n → Data.List.length $ Data.List.filter (coprime? n) $ Data.List.upTo n
       field
         1<e<λ : (1 ℕ.< e) Σ.× (e ℕ.< eulerTotient n)
         λ' : ℕ
@@ -178,7 +182,7 @@ instance
     traji₁ (_⊎_.inj₁ g) _ = RSA.T.G.n g
     traji₁ (_⊎_.inj₂ s) _ = RSA.T.S.n s
 
-record ArkasaF (M₁l M₂l : _) : Set (Level.suc (M₁l ⊔ M₂l))
+record ArkasaF (M₁l M₂l : _) : Set (Level.suc $ M₁l ⊔ M₂l)
   where
   field
     cmene : String
@@ -206,5 +210,5 @@ sha256 = record {
 record Av (lTg lTs j : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j))
   where
   field
-    pked : List (PKED lTg lTs j)
+    pked : List $ PKED lTg lTs j
 \end{code}
