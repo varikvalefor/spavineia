@@ -83,13 +83,12 @@ record PKED (lTg lTs j : _) : Set (Level.suc (lTg ⊔ lTs ⊔ j))
     Ts : Set lTs
     J : Set j
     traji₁ : Maybe (Tg ⊎ Ts → J → ℕ)
-    traji₂ : Maybe ℕ
 
   ES₁ : Tg ⊎ Ts → J → Set
   ES₁ g j = maybe (λ f → Fin $ f g j) ℕ traji₁
 
   ES₂ : Set
-  ES₂ = maybe Fin ℕ traji₂
+  ES₂ = ℕ
 
   field
     M : Tg → Ts → Set
@@ -183,7 +182,6 @@ instance
     Ts = RSA.T.S;
     Tg = RSA.T.G;
     traji₁ = just traji₁;
-    traji₂ = just {!!};
     J = Fin 1;
     M = λ x z → RSA.T.M z x;
     enc = {!!};
