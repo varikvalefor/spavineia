@@ -20,6 +20,7 @@ open import Data.Sum
   )
 open import Function
   using (
+    _∘_;
     _$_
   )
 open import Data.List
@@ -212,7 +213,7 @@ instance
     J = Fin 1;
     M = Function.flip RSA.T.M;
     enc = λ g _ → RSA.O<' g;
-    dec? = λ s _ → just Function.∘ RSA.<O' s;
+    dec? = λ s _ → just ∘ RSA.<O' s;
     dec∘enc = {!!};
     ESd = {!!}
     }
