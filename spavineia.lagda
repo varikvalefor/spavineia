@@ -49,6 +49,10 @@ open import Relation.Nullary
   using (
     Dec
   )
+open import Data.Nat.Primality
+  using (
+    Prime
+  )
 open import Data.Nat.Coprimality
   using (
     coprime?
@@ -157,6 +161,8 @@ module RSA where
         p q : ℕ
         e : ℕ
         d : ℕ
+        pPrime : Prime p
+        qPrime : Prime q
       n = p ℕ.* q
       eulerTotient : ℕ → ℕ
       eulerTotient = λ n → Data.List.length $ Data.List.filter (coprime? n) $ Data.List.upTo n
