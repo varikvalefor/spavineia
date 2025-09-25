@@ -77,6 +77,7 @@ open import Relation.Binary.PropositionalEquality
     _≡_
   )
 open import Relation.Binary.HeterogeneousEquality
+  as _≅_
   using (
     _≅_
   )
