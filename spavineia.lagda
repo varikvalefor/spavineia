@@ -185,6 +185,12 @@ module RSA where
 
     M : S → G → Set
     M = λ s g → (G.n g ≡ S.n s) Σ.× (G.e g ≡ S.e s)
+
+  Se : T.G → Set
+  Se g = Fin (T.G.n g)
+
+  O<' : (g : T.G) → Se g → ℕ
+  O<' g m = Data.Nat.DivMod._%_ (Data.Fin.toℕ m ℕ.^ (T.G.e g)) (T.G.n g) {≢0 = T.G.n≢0 g}
 \end{code}
 
 \begin{code}
