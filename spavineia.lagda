@@ -67,6 +67,10 @@ open import Truthbrary.Record.LLC
     _++_;
     liliString
   )
+open import Relation.Nullary.Decidable
+  as R₀D
+    using (
+    )
 open import Relation.Binary.PropositionalEquality
   using (
     _≡_
@@ -164,6 +168,8 @@ module RSA where
         pPrime : Prime p
         qPrime : Prime q
       n = p ℕ.* q
+      n≢0 : R₀D.False $ n ℕ.≟ 0
+      n≢0 = {!!}
       eulerTotient : ℕ → ℕ
       eulerTotient = λ n → Data.List.length $ Data.List.filter (coprime? n) $ Data.List.upTo n
       field
