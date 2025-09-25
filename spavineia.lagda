@@ -213,10 +213,11 @@ module RSA where
           → (_≅_
               m
               (<O' s (O<' g m)))
-  <O'∘O<' = λ g s M m → _≅_.sym $ begin
+  <O'∘O<' g s M m = _≅_.sym $ begin
     <O' s (O<' g m) ≅⟨ {!!} ⟩
     m ∎
     where
+    m' = Data.Fin.toℕ m
     open _≅_.≅-Reasoning
 \end{code}
 
