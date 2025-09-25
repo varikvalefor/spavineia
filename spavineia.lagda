@@ -76,6 +76,10 @@ open import Relation.Binary.PropositionalEquality
   using (
     _≡_
   )
+open import Relation.Binary.HeterogeneousEquality
+  using (
+    _≅_
+  )
 \end{code}
 
 \begin{code}
@@ -200,6 +204,16 @@ module RSA where
 
   <O' : (s : T.S) → ℕ → Sd s
   <O' s c = Data.Nat.DivMod._mod_ (c ℕ.^ T.S.d s) (T.S.n s) {≢0 = T.S.n≢0 s}
+
+  <O'∘O<' : (g : T.G)
+          → (s : T.S)
+          → T.M s g
+          → (m : Se g)
+          → (_≅_
+              m
+              (<O' s (O<' g m)))
+  <O'∘O<' = {!!}
+              
 \end{code}
 
 \begin{code}
