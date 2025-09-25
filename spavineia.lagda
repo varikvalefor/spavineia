@@ -218,7 +218,7 @@ module RSA where
               (<O' s (O<' g m)))
   <O'∘O<' g s M m = _≅_.sym $ begin
     <O' s (O<' g m) ≅⟨ {!!} ⟩
-    Data.Nat.DivMod._mod_ ((m' ℕ.^ e) ℕ.^ d) n₂ {≢0 = {!!}} ≅⟨ {!!} ⟩
+    Data.Nat.DivMod._mod_ ((m' ℕ.^ e) ℕ.^ d) n₂ {≢0 = T.S.n≢0 s} ≅⟨ {!!} ⟩
     m ∎
     where
     m' = Data.Fin.toℕ m
