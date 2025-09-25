@@ -213,7 +213,7 @@ module RSA where
           → (s : T.S)
           → T.M s g
           → (m : Se g)
-          → m ≅ (<O' s (O<' g m))
+          → m ≅ (<O' s $ O<' g m)
   <O'∘O<' g s M m = _≅_.sym $ begin
     <O' s (O<' g m) ≅⟨ {!!} ⟩
     Data.Nat.DivMod._mod_ ((m' ℕ.^ e) ℕ.^ d) n₂ {≢0 = T.S.n≢0 s} ≅⟨ {!!} ⟩
