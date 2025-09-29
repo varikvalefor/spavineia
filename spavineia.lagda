@@ -216,8 +216,8 @@ module RSA where
           → Data.Fin.toℕ m ≡ Data.Fin.toℕ (<O' s (O<' g m))
   <O'∘O<' g s M m = _≡_.sym $ begin
     Data.Fin.toℕ (<O' s $ O<' g m) ≡⟨ _≡_.refl ⟩
-    Data.Fin.toℕ (<O' s $ m^e %mg) ≡⟨ _≡_.refl ⟩
-    Data.Fin.toℕ (((m^e %mg) ℕ.^ T.S.d s) %ns ) ≡⟨ {!!} ⟩
+    Data.Fin.toℕ (<O' s $ m^e %ng) ≡⟨ _≡_.refl ⟩
+    Data.Fin.toℕ (((m^e %ng) ℕ.^ T.S.d s) %ns ) ≡⟨ {!!} ⟩
     Data.Fin.toℕ m ∎
     where
     m' = Data.Fin.toℕ m
@@ -225,7 +225,7 @@ module RSA where
     d = T.S.d s
     n₂ = T.S.n s
     m^e = m' ℕ.^ T.G.e g
-    _%mg = λ x → _%_ x (T.G.n g) {T.G.n≢0 g}
+    _%ng = λ x → _%_ x (T.G.n g) {T.G.n≢0 g}
     _%ns = λ x → Data.Nat.DivMod._mod_ x (T.S.n s) {T.S.n≢0 s}
     Mm : (x m n₁ n₂ : ℕ)
        → x % ℕ.suc n₁ ≡ m
