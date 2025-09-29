@@ -220,7 +220,7 @@ module RSA where
     toℕ (<O' s $ m^e %ng) ≡⟨ _≡_.refl ⟩
     toℕ (((m^e %ng) ℕ.^ T.S.d s) %ns ) ≡⟨ {!!} ⟩
     toℕ (((m^e %ng) ℕ.^ T.S.d s) %ng' ) ≡⟨ {!!} ⟩
-    toℕ ((m^e ℕ.^ T.S.d s) %ng' ) ≡⟨ {!!} ⟩
+    toℕ ((m^e ℕ.^ T.S.d s) %ng') ≡⟨ {!!} ⟩
     toℕ m ∎
     where
     m' = toℕ m
