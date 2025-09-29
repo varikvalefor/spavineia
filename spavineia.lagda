@@ -213,11 +213,10 @@ module RSA where
           → (s : T.S)
           → T.M s g
           → (m : Se g)
-          → m ≅ <O' s (O<' g m)
-  <O'∘O<' g s M m = _≅_.sym $ begin
-    <O' s (O<' g m) ≅⟨ {!!} ⟩
-    Mm (O<' g m) (Data.Fin.toℕ m) (T.S.p s) (T.S.q s) {!!} {!!} ≅⟨ {!!} ⟩
-    m ∎
+          → Data.Fin.toℕ m ≡ Data.Fin.toℕ (<O' s (O<' g m))
+  <O'∘O<' g s M m = _≡_.sym $ begin
+    Data.Fin.toℕ (<O' s (O<' g m)) ≡⟨ {!!} ⟩
+    Data.Fin.toℕ m ∎
     where
     m' = Data.Fin.toℕ m
     e = T.G.e g
@@ -228,7 +227,7 @@ module RSA where
        → x % ℕ.suc n₂ ≡ m
        → x % (ℕ.suc n₁ ℕ.* ℕ.suc n₂) ≡ m
     Mm = {!!}
-    open _≅_.≅-Reasoning
+    open _≡_.≡-Reasoning
 \end{code}
 
 \begin{code}
