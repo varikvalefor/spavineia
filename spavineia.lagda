@@ -218,7 +218,7 @@ module RSA where
   <O'∘O<' g s M m = _≡_.sym $ begin
     toℕ (<O' s $ O<' g m) ≡⟨ _≡_.refl ⟩
     toℕ (<O' s $ m^e %ng) ≡⟨ _≡_.refl ⟩
-    toℕ (((m^e %ng) ℕ.^ T.S.d s) %ns ) ≡⟨ {!!} ⟩
+    toℕ (((m^e %ng) ℕ.^ T.S.d s) %ns) ≡⟨ {!!} ⟩
     toℕ (((m^e %ng) ℕ.^ T.S.d s) %ng') ≡⟨ {!!} ⟩
     toℕ ((m^e ℕ.^ T.S.d s) %ng') ≡⟨ {!!} ⟩
     toℕ m ∎
