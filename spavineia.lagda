@@ -216,13 +216,14 @@ module RSA where
           → Data.Fin.toℕ m ≡ Data.Fin.toℕ (<O' s (O<' g m))
   <O'∘O<' g s M m = _≡_.sym $ begin
     Data.Fin.toℕ (<O' s (O<' g m)) ≡⟨ {!!} ⟩
-    Data.Fin.toℕ (<O' s (_%_ (m' ℕ.^ T.G.e g) (T.G.n g) {T.G.n≢0 g})) ≡⟨ {!!} ⟩
+    Data.Fin.toℕ (<O' s ((m' ℕ.^ T.G.e g) %mg)) ≡⟨ {!!} ⟩
     Data.Fin.toℕ m ∎
     where
     m' = Data.Fin.toℕ m
     e = T.G.e g
     d = T.S.d s
     n₂ = T.S.n s
+    _%mg = λ x → _%_ x (T.G.n g) {T.G.n≢0 g}
     Mm : (x m n₁ n₂ : ℕ)
        → x % ℕ.suc n₁ ≡ m
        → x % ℕ.suc n₂ ≡ m
