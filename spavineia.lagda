@@ -216,7 +216,7 @@ module RSA where
           → Data.Fin.toℕ m ≡ Data.Fin.toℕ (<O' s (O<' g m))
   <O'∘O<' g s M m = _≡_.sym $ begin
     Data.Fin.toℕ (<O' s $ O<' g m) ≡⟨ _≡_.refl ⟩
-    Data.Fin.toℕ (<O' s $ m^e %mg) ≡⟨ {!!} ⟩
+    Data.Fin.toℕ (<O' s $ m^e %mg) ≡⟨ _≡_.refl ⟩
     Data.Fin.toℕ (Data.Nat.DivMod._mod_ ((m^e %mg) ℕ.^ T.S.d s) (T.S.n s) {T.S.n≢0 s} ) ≡⟨ {!!} ⟩
     Data.Fin.toℕ m ∎
     where
