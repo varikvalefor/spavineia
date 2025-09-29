@@ -219,6 +219,7 @@ module RSA where
     Data.Fin.toℕ (<O' s $ m^e %ng) ≡⟨ _≡_.refl ⟩
     Data.Fin.toℕ (((m^e %ng) ℕ.^ T.S.d s) %ns ) ≡⟨ {!!} ⟩
     Data.Fin.toℕ (((m^e %ng) ℕ.^ T.S.d s) %ng' ) ≡⟨ {!!} ⟩
+    Data.Fin.toℕ ((m^e ℕ.^ T.S.d s) %ng' ) ≡⟨ {!!} ⟩
     Data.Fin.toℕ m ∎
     where
     m' = Data.Fin.toℕ m
