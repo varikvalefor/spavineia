@@ -6,6 +6,7 @@ open import Level
   )
 open import Data.Fin
   using (
+    toℕ;
     Fin
   )
 open import Data.Nat
@@ -204,7 +205,7 @@ module RSA where
   O<' : (g : T.G) → Se g → ℕ
   O<' g m = _%_ m^e (T.G.n g) {≢0 = T.G.n≢0 g}
     where
-    m^e = Data.Fin.toℕ m ℕ.^ T.G.e g
+    m^e = toℕ m ℕ.^ T.G.e g
 
   <O' : (s : T.S) → ℕ → Sd s
   <O' s c = Data.Nat.DivMod._mod_ (c ℕ.^ T.S.d s) (T.S.n s) {≢0 = T.S.n≢0 s}
@@ -213,16 +214,16 @@ module RSA where
           → (s : T.S)
           → T.M s g
           → (m : Se g)
-          → Data.Fin.toℕ m ≡ Data.Fin.toℕ (<O' s (O<' g m))
+          → toℕ m ≡ toℕ (<O' s (O<' g m))
   <O'∘O<' g s M m = _≡_.sym $ begin
-    Data.Fin.toℕ (<O' s $ O<' g m) ≡⟨ _≡_.refl ⟩
-    Data.Fin.toℕ (<O' s $ m^e %ng) ≡⟨ _≡_.refl ⟩
-    Data.Fin.toℕ (((m^e %ng) ℕ.^ T.S.d s) %ns ) ≡⟨ {!!} ⟩
-    Data.Fin.toℕ (((m^e %ng) ℕ.^ T.S.d s) %ng' ) ≡⟨ {!!} ⟩
-    Data.Fin.toℕ ((m^e ℕ.^ T.S.d s) %ng' ) ≡⟨ {!!} ⟩
-    Data.Fin.toℕ m ∎
+    toℕ (<O' s $ O<' g m) ≡⟨ _≡_.refl ⟩
+    toℕ (<O' s $ m^e %ng) ≡⟨ _≡_.refl ⟩
+    toℕ (((m^e %ng) ℕ.^ T.S.d s) %ns ) ≡⟨ {!!} ⟩
+    toℕ (((m^e %ng) ℕ.^ T.S.d s) %ng' ) ≡⟨ {!!} ⟩
+    toℕ ((m^e ℕ.^ T.S.d s) %ng' ) ≡⟨ {!!} ⟩
+    toℕ m ∎
     where
-    m' = Data.Fin.toℕ m
+    m' = toℕ m
     e = T.G.e g
     d = T.S.d s
     n₂ = T.S.n s
