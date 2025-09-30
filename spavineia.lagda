@@ -221,6 +221,7 @@ module RSA where
     toℕ (((m^e %ng) ℕ.^ T.S.d s) %ns) ≡⟨ {!!} ⟩
     toℕ (((m^e %ng) ℕ.^ T.S.d s) %ng') ≡⟨ {!!} ⟩
     toℕ ((m^e ℕ.^ T.S.d s) %ng') ≡⟨ {!!} ⟩
+    toℕ ((m' ℕ.^ (e ℕ.* d)) %ng') ≡⟨ {!!} ⟩
     toℕ m ∎
     where
     m' = toℕ m
